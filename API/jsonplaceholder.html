@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Placeholder</title>
+
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>JSOn Placeholder</h2>
+    <div>
+        <h3>User Name</h3>
+        <ul id="usernameArea">
+            <li>Rahim</li>
+        </ul>
+
+
+        <h2>Photos</h2>
+        <ul id="photosArea">
+            <li><img src="" alt=""></li>
+        </ul>
+    </div>
+
+
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => displayUsers(json))
+            .catch(error => console.log(error))
+
+
+        function displayUsers(users) {
+            const userNames = users.map(user => user.username);
+            const usernameArea = document.getElementById("usernameArea")
+
+            for (let i = 0; i < userNames.length; i++) {
+                const username = userNames[i];
+                const li = document.createElement("li");
+                li.innerHTML = username;
+                usernameArea.appendChild(li)
+
+            }
+
+
+        }
+
+        fetch("https://jsonplaceholder.typicode.com/photos")
+            .then(res => res.json())
+            .then(json => displayPhotos(json))
+            .catch(error => console.log(error))
+
+        function displayPhotos(photos) {
+            const ourPhotos = photos.map(photo => photo.thumbnailUrl);
+            const photosArea = document.getElementById("photosArea")
+            for (let i = 0; i < 20; i++) {
+                const photoURL = ourPhotos[i];
+                const img = document.createElement("img");
+                img.src = photoURL;
+
+                photosArea.appendChild(img)
+            }
+        }
+    </script>
+</body>
+
+</html>
