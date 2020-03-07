@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Data to Placeholder Server</title>
+
+    <style type="text/css">
+        input,
+        textarea {
+            border: 1px solid #ddd;
+            padding: 7px 12px;
+            width: 300px;
+            display: block;
+        }
+
+        input[type="submit"] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Send Data to JSON Placeholder Server</h2>
+    <p>The result is on the console log <b>CTRL + SHIFT + I</b></p>
+    <input type="text" name="title" id="title" placeholder="Title">
+    <br>
+    <br>
+    <textarea name="message3" id="message" cols="30" rows="10" placeholder="Message Body"></textarea>
+    <br><br>
+    <input id="submit" type="submit" value="Submit">
+
+    <script type="text/javascript">
+        const submit = document.getElementById("submit");
+        submit.addEventListener("click", function () {
+            const title = document.getElementById("title").value;
+            const message = document.getElementById("message").value;
+
+            const post = {
+                title: title,
+                body: message,
+                id: Math.round(Math.random() * 100),
+                userId: Math.round(Math.random() * 1000)
+            }
+
+            postToServer(post)
+        })
+
+        function postToServer(postInfo) {
+            fetch("https://jsonplaceholder.typicode.com/posts", {
+                    method: "POST",
+                    body: JSON.stringify(postInfo),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then(res => res.json())
+                .then(data => console.log(data))
+                .catch(error => console.log(error))
+        }
+    </script>
+</body>
+
+</html>
