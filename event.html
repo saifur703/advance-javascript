@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+</head>
+
+<body>
+    <h1>Event</h1>
+    <ul>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li onclick="lastPersonFunc(event)">Sint architecto laudantium eos voluptatem?</li>
+        <li onclick="alert('This is alert for your clicked :) ')">Error similique soluta corporis veniam.</li>
+        <li>Quasi perferendis facere cumque quo.</li>
+        <li id="lastPerson">Nisi deserunt doloremque officiis quia.</li>
+    </ul>
+
+
+    <script type="text/javascript">
+        const lastPerson = document.getElementById("lastPerson");
+
+        lastPerson.addEventListener("click", lastPersonFunc);
+
+        function lastPersonFunc(event) {
+            console.log("Last Person");
+            console.log(event.target)
+        }
+    </script>
+</body>
+
+</html>
