@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble</title>
+
+
+    <style type="text/css">
+        li {
+            color: black;
+            font-size: 18px;
+            display: block;
+        }
+
+        li:hover {
+            color: firebrick;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <h2>Bubble</h2>
+        <ul id="mainmenu">
+            <li id="first" class="item">List item 1</li>
+            <li class="item">List item 2</li>
+            <li class="item">List item 3</li>
+            <li class="item">List item 4</li>
+            <li class="item">List item 5</li>
+        </ul>
+
+
+        <input type="text" name="name" id="userName" placeholder="Enter Any value"> <br>
+        <button id="addNew">Add New Item</button>
+    </div>
+
+
+    <script type="text/javascript">
+        const first = document.getElementById("first")
+            .addEventListener("click", function (e) {
+                e.preventDefault();
+                console.log("Click first");
+                event.stopPropagation();
+            });
+        const mainmenu = document.getElementById("mainmenu")
+            .addEventListener("click", function (event) {
+                // console.log(this, event.target)
+                event.target.parentNode.removeChild(event.target)
+            });
+
+
+        /* 
+        const items = document.getElementsByClassName("item");
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            item.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                console.log(this, e.target)
+            })
+        } 
+        */
+
+        /* 
+        const items = document.getElementsByClassName("item");
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            item.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                e.target.parentNode.removeChild(e.target)
+            })
+        }
+        */
+        const addNew = document.getElementById("addNew");
+        addNew.addEventListener("click", function (event) {
+            const parentEl = document.getElementById("mainmenu");
+            const newEl = document.createElement("li");
+            const userName = document.getElementById("userName");
+
+            newEl.innerText = userName.value;
+            if (userName.value === "") {
+                return false;
+            }
+            parentEl.appendChild(newEl);
+            userName.value = "";
+        })
+    </script>
+</body>
+
+</html>
