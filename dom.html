@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM - Document Object Model</title>
+
+
+    <style type="text/css">
+        li {
+            color: black;
+            font-size: 18px;
+            display: block;
+        }
+
+        li:hover {
+            color: firebrick;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <h2>Bubble</h2>
+        <ul id="mainmenu">
+            <li id="first" class="item">List item 1</li>
+            <li class="item">List item 2</li>
+            <li class="item">List item 3</li>
+            <li class="item">List item 4</li>
+            <li class="item">List item 5</li>
+        </ul>
+
+
+        <input type="text" name="name" id="userName" placeholder="Enter Any value"> <br>
+        <button id="addNew">Add New Item</button>
+    </div>
+
+
+    <script type="text/javascript">
+        const addNew = document.getElementById("addNew");
+        addNew.addEventListener("click", function (event) {
+            const parentEl = document.getElementById("mainmenu");
+            const newEl = document.createElement("li");
+            const userName = document.getElementById("userName");
+
+            newEl.innerText = userName.value;
+            if (userName.value === "") {
+                return false;
+            }
+            parentEl.appendChild(newEl);
+            userName.value = "";
+        })
+
+        /*
+        Open Browser with Inspect Element in Console 
+
+        1. document 
+        2. document.body 
+        3. document.getElementByID
+
+        study as like,, research it and enjoy!!! :) 
+        */
+    </script>
+</body>
+
+</html>
